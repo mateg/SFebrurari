@@ -87,7 +87,7 @@ class LeaderboardVC: UIViewController {
         
     }
     
-    static func setName(name:String) {
+    static func setName(name:String, id:String) {
         
         let uuid = UIDevice.current.identifierForVendor!.uuidString
         
@@ -101,7 +101,7 @@ class LeaderboardVC: UIViewController {
         
     }
     
-   static func updateScore(score:Int) {
+    static func updateScore(score:Int, id:String) {
         
         // Det här kan vara användarens facebook ID eller något annat unikt ID.
          let uuid = UIDevice.current.identifierForVendor!.uuidString

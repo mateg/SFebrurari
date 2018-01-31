@@ -203,7 +203,7 @@ class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdD
       //  rewardButton.imageView?.animationRepeatCount = 1
         
         
-        LeaderboardVC.updateScore(score: scoreNumber)
+       
         
         if rewardUsed != "Used" {
             print("reward hasn't been used this round")
@@ -614,8 +614,9 @@ if self.rewardBasedVideo?.isReady == true {
 //leaderboard / facebook login
     @IBAction func leaderboardBtnTapped(_ sender: Any) {
         
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
-        self.present(vc, animated: true, completion: nil)
+        handleCustomFacebookLogin()
+        
+       
         
     }
     
@@ -774,6 +775,7 @@ if self.rewardBasedVideo?.isReady == true {
             print("facebook error", error)
             return
         }
+        
         print("facebook login successful + send email address to Firebase")
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {(connection, result, error) in
             
@@ -787,20 +789,41 @@ if self.rewardBasedVideo?.isReady == true {
     
     func handleCustomFacebookLogin() { //FREDRIK
         if(FBSDKAccessToken.current() != nil){
-            print("Facebook logged in")
-            let alert = UIAlertController(title: "Logga ut från Facebook?", message: "Detta försämrar din spelupplevelse och kontakt med Sverigespelets sociala media community.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Logga ut", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in FBSDKLoginManager().logOut()}))
-            alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertActionStyle.cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            
+            FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {(connection, result, error) in
+                
+                if error != nil{
+                    print("Failed to start facebook graph request", error as Any)
+                    return
+                }
+                
+                let res = result as! NSDictionary
+ 
+                
+                LeaderboardVC.updateScore(score: self.scoreNumber,id:res.object(forKey: "id") as! String)
+                LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id:res.object(forKey: "id") as! String)
+                
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+                self.present(vc, animated: true, completion: nil)
+                
+                print(result!) //print out the different crediters of the user
+            }
+
         }else{
+            
             print("Facebook not logged in")
             FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) {
+                
    (result, error) in
+                
    if error != nil {
        print("Custom Facebook Login failed")
        return
    }
+                
+                
    self.grabEmailAddress()
+                
             }
         }
     }
@@ -828,6 +851,10 @@ if self.rewardBasedVideo?.isReady == true {
    print("Failed to start facebook graph request", error as Any)
    return
             }
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+            self.present(vc, animated: true, completion: nil)
+            
             print(result!) //print out the different crediters of the user
         }
         
