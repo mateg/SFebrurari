@@ -1,0 +1,850 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92F5E9920933E9F87A36E556 /* Pods_Sverigespelet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D0E835AFB070CA225377C6 /* Pods_Sverigespelet.framework */; };
+		A01FED1A1EEE7F4A00C2DEE8 /* YBAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FED191EEE7F4A00C2DEE8 /* YBAlertController.swift */; };
+		A01FED1C1EEE7F6300C2DEE8 /* ActionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FED1B1EEE7F6300C2DEE8 /* ActionMenuButton.swift */; };
+		A0325A061F07F2F80000D736 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0325A051F07F2F80000D736 /* SettingsVC.swift */; };
+		A03CB2E71ECB4EA20073C8CC /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03CB2E61ECB4EA20073C8CC /* GoogleMobileAds.framework */; };
+		A0498DA2201A806D0057EE00 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0498DA1201A806D0057EE00 /* LeaderboardVC.swift */; };
+		A0638C641EB767D10060FB76 /* newTaskSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0638C631EB767D10060FB76 /* newTaskSegue.swift */; };
+		A06CA5331FC6D322002B3D57 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06CA5321FC6D322002B3D57 /* IntroViewController.swift */; };
+		A08F41FD1F26A973000CC52E /* AboutMeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08F41FB1F26A32B000CC52E /* AboutMeVC.swift */; };
+		A09DF6711EB242340057FCE6 /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DF6701EB242340057FCE6 /* KYCircularProgress.swift */; };
+		A09DF6741EB2429D0057FCE6 /* PanGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DF6721EB2429D0057FCE6 /* PanGestureView.swift */; };
+		A09DF6751EB2429D0057FCE6 /* PanGestureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09DF6731EB2429D0057FCE6 /* PanGestureAction.swift */; };
+		A09E42E71F87798C006559DF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A09E42E61F87798C006559DF /* StoreKit.framework */; };
+		A0AC0BDB1E9BD44600EA3792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0BDA1E9BD44600EA3792 /* AppDelegate.swift */; };
+		A0AC0BE51E9BD44600EA3792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0AC0BE31E9BD44600EA3792 /* LaunchScreen.storyboard */; };
+		A0AC0BF01E9BD44600EA3792 /* fiveSecondsGameFinalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0BEF1E9BD44600EA3792 /* fiveSecondsGameFinalTests.swift */; };
+		A0AC0BFB1E9BD44600EA3792 /* fiveSecondsGameFinalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0BFA1E9BD44600EA3792 /* fiveSecondsGameFinalUITests.swift */; };
+		A0AC0C161E9E263400EA3792 /* StartMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0C151E9E263400EA3792 /* StartMenuVC.swift */; };
+		A0AC0C191E9E267E00EA3792 /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0C171E9E267E00EA3792 /* GameVC.swift */; };
+		A0AC0C1A1E9E267E00EA3792 /* EndMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0C181E9E267E00EA3792 /* EndMenuVC.swift */; };
+		A0AC0C1F1E9E270B00EA3792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0AC0C1B1E9E270B00EA3792 /* Main.storyboard */; };
+		A0AC0C201E9E270B00EA3792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0AC0C1D1E9E270B00EA3792 /* Assets.xcassets */; };
+		A0AC0C211E9E270B00EA3792 /* containerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC0C1E1E9E270B00EA3792 /* containerSegue.swift */; };
+		A0D5CF201ED73EF900180B9F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D5CF1F1ED73EF800180B9F /* Extensions.swift */; };
+		A0FB52831FE42D5F00F64191 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0FB52821FE42D5F00F64191 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0AC0BEC1E9BD44600EA3792 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0AC0BCF1E9BD44600EA3792 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0AC0BD61E9BD44600EA3792;
+			remoteInfo = fiveSecondsGameFinal;
+		};
+		A0AC0BF71E9BD44600EA3792 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0AC0BCF1E9BD44600EA3792 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0AC0BD61E9BD44600EA3792;
+			remoteInfo = fiveSecondsGameFinal;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		362805B2D75C3FC6E739B41B /* Pods-Sverigespelet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sverigespelet.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sverigespelet/Pods-Sverigespelet.release.xcconfig"; sourceTree = "<group>"; };
+		425B85DB313BBEB4E5992745 /* Pods_fiveSecondsGameFinal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fiveSecondsGameFinal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01FED191EEE7F4A00C2DEE8 /* YBAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBAlertController.swift; sourceTree = "<group>"; };
+		A01FED1B1EEE7F6300C2DEE8 /* ActionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionMenuButton.swift; sourceTree = "<group>"; };
+		A0325A051F07F2F80000D736 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		A03CB2E61ECB4EA20073C8CC /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = fiveSecondsGameFinal/GoogleMobileAds.framework; sourceTree = "<group>"; };
+		A0498DA1201A806D0057EE00 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
+		A0638C631EB767D10060FB76 /* newTaskSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newTaskSegue.swift; sourceTree = "<group>"; };
+		A06CA5321FC6D322002B3D57 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		A07EE4B91F6FD8A8009C6A21 /* fiveSecondsGameFinal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fiveSecondsGameFinal.entitlements; sourceTree = "<group>"; };
+		A08F41FB1F26A32B000CC52E /* AboutMeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutMeVC.swift; sourceTree = "<group>"; };
+		A091517A1ED8923B0033FDD6 /* SwiftShareBubbles.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SwiftShareBubbles.bundle; path = "../../../Downloads/SwiftShareBubbles-master/SwiftShareBubbles/SwiftShareBubbles.bundle"; sourceTree = "<group>"; };
+		A091517C1ED892EB0033FDD6 /* SwiftShareBubbles.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftShareBubbles.framework; path = ../../SwiftShareBubbles.framework; sourceTree = "<group>"; };
+		A09DF6701EB242340057FCE6 /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
+		A09DF6721EB2429D0057FCE6 /* PanGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanGestureView.swift; sourceTree = "<group>"; };
+		A09DF6731EB2429D0057FCE6 /* PanGestureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanGestureAction.swift; sourceTree = "<group>"; };
+		A09E42E61F87798C006559DF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A0AC0BD71E9BD44600EA3792 /* Sverigespelet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sverigespelet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0AC0BDA1E9BD44600EA3792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A0AC0BE41E9BD44600EA3792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A0AC0BE61E9BD44600EA3792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0AC0BEB1E9BD44600EA3792 /* SverigespeletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SverigespeletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0AC0BEF1E9BD44600EA3792 /* fiveSecondsGameFinalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fiveSecondsGameFinalTests.swift; sourceTree = "<group>"; };
+		A0AC0BF11E9BD44600EA3792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0AC0BF61E9BD44600EA3792 /* SverigespeletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SverigespeletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0AC0BFA1E9BD44600EA3792 /* fiveSecondsGameFinalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fiveSecondsGameFinalUITests.swift; sourceTree = "<group>"; };
+		A0AC0BFC1E9BD44600EA3792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0AC0C151E9E263400EA3792 /* StartMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartMenuVC.swift; sourceTree = "<group>"; };
+		A0AC0C171E9E267E00EA3792 /* GameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		A0AC0C181E9E267E00EA3792 /* EndMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndMenuVC.swift; sourceTree = "<group>"; };
+		A0AC0C1B1E9E270B00EA3792 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A0AC0C1C1E9E270B00EA3792 /* fiveSecondsGame-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "fiveSecondsGame-Bridging-Header.h"; path = "fiveSecondsGameFinal/fiveSecondsGame-Bridging-Header.h"; sourceTree = "<group>"; };
+		A0AC0C1D1E9E270B00EA3792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0AC0C1E1E9E270B00EA3792 /* containerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = containerSegue.swift; sourceTree = "<group>"; };
+		A0BFBDAD1F76FE7100EA3022 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A0D5CF1F1ED73EF800180B9F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A0DA715F1EE616DB00E694EE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "Pods/../build/Debug-iphoneos/Bolts/Bolts.framework"; sourceTree = "<group>"; };
+		A0DA71601EE616DB00E694EE /* FacebookCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookCore.framework; path = "../../../Library/Developer/Xcode/DerivedData/fiveSecondsGameFinal-hadksjhfvqbawacjguefhpqphtwd/Build/Products/Debug-iphoneos/FacebookCore/FacebookCore.framework"; sourceTree = "<group>"; };
+		A0DA71611EE616DB00E694EE /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = "Pods/../build/Debug-iphoneos/FacebookLogin/FacebookLogin.framework"; sourceTree = "<group>"; };
+		A0DA71621EE616DB00E694EE /* FacebookShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookShare.framework; path = "Pods/../build/Debug-iphoneos/FacebookShare/FacebookShare.framework"; sourceTree = "<group>"; };
+		A0DA71631EE616DB00E694EE /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKCoreKit/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		A0DA71641EE616DB00E694EE /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKLoginKit/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		A0DA71651EE616DB00E694EE /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "Pods/../build/Debug-iphoneos/FBSDKShareKit/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		A0FB52821FE42D5F00F64191 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ACEC06068B071B81D3B0B43F /* Pods-Sverigespelet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sverigespelet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sverigespelet/Pods-Sverigespelet.debug.xcconfig"; sourceTree = "<group>"; };
+		C6D0E835AFB070CA225377C6 /* Pods_Sverigespelet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sverigespelet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0AC0BD41E9BD44600EA3792 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A09E42E71F87798C006559DF /* StoreKit.framework in Frameworks */,
+				A03CB2E71ECB4EA20073C8CC /* GoogleMobileAds.framework in Frameworks */,
+				92F5E9920933E9F87A36E556 /* Pods_Sverigespelet.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0AC0BE81E9BD44600EA3792 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0AC0BF31E9BD44600EA3792 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A002AF681ECB43F9002E1502 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A09E42E61F87798C006559DF /* StoreKit.framework */,
+				A0DA715F1EE616DB00E694EE /* Bolts.framework */,
+				A0DA71601EE616DB00E694EE /* FacebookCore.framework */,
+				A0DA71611EE616DB00E694EE /* FacebookLogin.framework */,
+				A0DA71621EE616DB00E694EE /* FacebookShare.framework */,
+				A0DA71631EE616DB00E694EE /* FBSDKCoreKit.framework */,
+				A0DA71641EE616DB00E694EE /* FBSDKLoginKit.framework */,
+				A0DA71651EE616DB00E694EE /* FBSDKShareKit.framework */,
+				A091517C1ED892EB0033FDD6 /* SwiftShareBubbles.framework */,
+				A091517A1ED8923B0033FDD6 /* SwiftShareBubbles.bundle */,
+				A03CB2E61ECB4EA20073C8CC /* GoogleMobileAds.framework */,
+				425B85DB313BBEB4E5992745 /* Pods_fiveSecondsGameFinal.framework */,
+				C6D0E835AFB070CA225377C6 /* Pods_Sverigespelet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A03259FE1EFFBBBB0000D736 /* Open Source */ = {
+			isa = PBXGroup;
+			children = (
+				A09DF6761EB242A80057FCE6 /* Pan Gesture */,
+				A09DF6701EB242340057FCE6 /* KYCircularProgress.swift */,
+				A01FED191EEE7F4A00C2DEE8 /* YBAlertController.swift */,
+				A01FED1B1EEE7F6300C2DEE8 /* ActionMenuButton.swift */,
+			);
+			name = "Open Source";
+			sourceTree = "<group>";
+		};
+		A03AEB7B1F2510E7005F6A58 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		A0638C651EB7698A0060FB76 /* Custom Segues */ = {
+			isa = PBXGroup;
+			children = (
+				A0AC0C1E1E9E270B00EA3792 /* containerSegue.swift */,
+				A0638C631EB767D10060FB76 /* newTaskSegue.swift */,
+			);
+			name = "Custom Segues";
+			sourceTree = "<group>";
+		};
+		A0638C661EB76A210060FB76 /* Viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				A06CA5321FC6D322002B3D57 /* IntroViewController.swift */,
+				A0AC0C151E9E263400EA3792 /* StartMenuVC.swift */,
+				A0AC0C171E9E267E00EA3792 /* GameVC.swift */,
+				A0AC0C181E9E267E00EA3792 /* EndMenuVC.swift */,
+				A08F41FB1F26A32B000CC52E /* AboutMeVC.swift */,
+				A0325A051F07F2F80000D736 /* SettingsVC.swift */,
+				A0498DA1201A806D0057EE00 /* LeaderboardVC.swift */,
+			);
+			name = Viewcontrollers;
+			sourceTree = "<group>";
+		};
+		A09DF6761EB242A80057FCE6 /* Pan Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				A09DF6721EB2429D0057FCE6 /* PanGestureView.swift */,
+				A09DF6731EB2429D0057FCE6 /* PanGestureAction.swift */,
+			);
+			name = "Pan Gesture";
+			sourceTree = "<group>";
+		};
+		A0AC0BCE1E9BD44600EA3792 = {
+			isa = PBXGroup;
+			children = (
+				A0AC0BD91E9BD44600EA3792 /* fiveSecondsGameFinal */,
+				A0AC0C1C1E9E270B00EA3792 /* fiveSecondsGame-Bridging-Header.h */,
+				A0AC0BEE1E9BD44600EA3792 /* fiveSecondsGameFinalTests */,
+				A0AC0BF91E9BD44600EA3792 /* fiveSecondsGameFinalUITests */,
+				A0AC0BD81E9BD44600EA3792 /* Products */,
+				A002AF681ECB43F9002E1502 /* Frameworks */,
+				AA2237AE45802AF0F6CC9588 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		A0AC0BD81E9BD44600EA3792 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0AC0BD71E9BD44600EA3792 /* Sverigespelet.app */,
+				A0AC0BEB1E9BD44600EA3792 /* SverigespeletTests.xctest */,
+				A0AC0BF61E9BD44600EA3792 /* SverigespeletUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0AC0BD91E9BD44600EA3792 /* fiveSecondsGameFinal */ = {
+			isa = PBXGroup;
+			children = (
+				A07EE4B91F6FD8A8009C6A21 /* fiveSecondsGameFinal.entitlements */,
+				A0AC0BDA1E9BD44600EA3792 /* AppDelegate.swift */,
+				A0638C661EB76A210060FB76 /* Viewcontrollers */,
+				A0638C651EB7698A0060FB76 /* Custom Segues */,
+				A0D5CF211ED73F0100180B9F /* Extensions */,
+				A03259FE1EFFBBBB0000D736 /* Open Source */,
+				A03AEB7B1F2510E7005F6A58 /* Fonts */,
+				A0AC0C1B1E9E270B00EA3792 /* Main.storyboard */,
+				A0AC0BE31E9BD44600EA3792 /* LaunchScreen.storyboard */,
+				A0AC0C1D1E9E270B00EA3792 /* Assets.xcassets */,
+				A0AC0BE61E9BD44600EA3792 /* Info.plist */,
+				A0FB52821FE42D5F00F64191 /* GoogleService-Info.plist */,
+			);
+			path = fiveSecondsGameFinal;
+			sourceTree = "<group>";
+		};
+		A0AC0BEE1E9BD44600EA3792 /* fiveSecondsGameFinalTests */ = {
+			isa = PBXGroup;
+			children = (
+				A0AC0BEF1E9BD44600EA3792 /* fiveSecondsGameFinalTests.swift */,
+				A0AC0BF11E9BD44600EA3792 /* Info.plist */,
+			);
+			path = fiveSecondsGameFinalTests;
+			sourceTree = "<group>";
+		};
+		A0AC0BF91E9BD44600EA3792 /* fiveSecondsGameFinalUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A0AC0BFA1E9BD44600EA3792 /* fiveSecondsGameFinalUITests.swift */,
+				A0AC0BFC1E9BD44600EA3792 /* Info.plist */,
+			);
+			path = fiveSecondsGameFinalUITests;
+			sourceTree = "<group>";
+		};
+		A0D5CF211ED73F0100180B9F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A0D5CF1F1ED73EF800180B9F /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		AA2237AE45802AF0F6CC9588 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACEC06068B071B81D3B0B43F /* Pods-Sverigespelet.debug.xcconfig */,
+				362805B2D75C3FC6E739B41B /* Pods-Sverigespelet.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A0AC0BD61E9BD44600EA3792 /* Sverigespelet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0AC0BFF1E9BD44600EA3792 /* Build configuration list for PBXNativeTarget "Sverigespelet" */;
+			buildPhases = (
+				6D0C8C2B5234858F8C7811DA /* [CP] Check Pods Manifest.lock */,
+				A0AC0BD31E9BD44600EA3792 /* Sources */,
+				A0AC0BD41E9BD44600EA3792 /* Frameworks */,
+				A0AC0BD51E9BD44600EA3792 /* Resources */,
+				68D1CF6F98A392AD1A2403C5 /* [CP] Embed Pods Frameworks */,
+				DEF9212D173CAEFFC0AE5868 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sverigespelet;
+			productName = fiveSecondsGameFinal;
+			productReference = A0AC0BD71E9BD44600EA3792 /* Sverigespelet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0AC0BEA1E9BD44600EA3792 /* SverigespeletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0AC0C021E9BD44600EA3792 /* Build configuration list for PBXNativeTarget "SverigespeletTests" */;
+			buildPhases = (
+				A0AC0BE71E9BD44600EA3792 /* Sources */,
+				A0AC0BE81E9BD44600EA3792 /* Frameworks */,
+				A0AC0BE91E9BD44600EA3792 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0AC0BED1E9BD44600EA3792 /* PBXTargetDependency */,
+			);
+			name = SverigespeletTests;
+			productName = fiveSecondsGameFinalTests;
+			productReference = A0AC0BEB1E9BD44600EA3792 /* SverigespeletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A0AC0BF51E9BD44600EA3792 /* SverigespeletUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0AC0C051E9BD44600EA3792 /* Build configuration list for PBXNativeTarget "SverigespeletUITests" */;
+			buildPhases = (
+				A0AC0BF21E9BD44600EA3792 /* Sources */,
+				A0AC0BF31E9BD44600EA3792 /* Frameworks */,
+				A0AC0BF41E9BD44600EA3792 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0AC0BF81E9BD44600EA3792 /* PBXTargetDependency */,
+			);
+			name = SverigespeletUITests;
+			productName = fiveSecondsGameFinalUITests;
+			productReference = A0AC0BF61E9BD44600EA3792 /* SverigespeletUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0AC0BCF1E9BD44600EA3792 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Lucas Otterling";
+				TargetAttributes = {
+					A0AC0BD61E9BD44600EA3792 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = B4FFLKPWFW;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					A0AC0BEA1E9BD44600EA3792 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = B4FFLKPWFW;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A0AC0BD61E9BD44600EA3792;
+					};
+					A0AC0BF51E9BD44600EA3792 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = B4FFLKPWFW;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A0AC0BD61E9BD44600EA3792;
+					};
+				};
+			};
+			buildConfigurationList = A0AC0BD21E9BD44600EA3792 /* Build configuration list for PBXProject "Sverigespelet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A0AC0BCE1E9BD44600EA3792;
+			productRefGroup = A0AC0BD81E9BD44600EA3792 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0AC0BD61E9BD44600EA3792 /* Sverigespelet */,
+				A0AC0BEA1E9BD44600EA3792 /* SverigespeletTests */,
+				A0AC0BF51E9BD44600EA3792 /* SverigespeletUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0AC0BD51E9BD44600EA3792 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0AC0BE51E9BD44600EA3792 /* LaunchScreen.storyboard in Resources */,
+				A0AC0C1F1E9E270B00EA3792 /* Main.storyboard in Resources */,
+				A0FB52831FE42D5F00F64191 /* GoogleService-Info.plist in Resources */,
+				A0AC0C201E9E270B00EA3792 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0AC0BE91E9BD44600EA3792 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0AC0BF41E9BD44600EA3792 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		68D1CF6F98A392AD1A2403C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Sverigespelet/Pods-Sverigespelet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/EggRating/EggRating.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickTableViewController/QuickTableViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RateView/RateView.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftShareBubbles/SwiftShareBubbles.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EggRating.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickTableViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RateView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftShareBubbles.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sverigespelet/Pods-Sverigespelet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D0C8C2B5234858F8C7811DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sverigespelet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEF9212D173CAEFFC0AE5868 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sverigespelet/Pods-Sverigespelet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0AC0BD31E9BD44600EA3792 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A06CA5331FC6D322002B3D57 /* IntroViewController.swift in Sources */,
+				A08F41FD1F26A973000CC52E /* AboutMeVC.swift in Sources */,
+				A09DF6711EB242340057FCE6 /* KYCircularProgress.swift in Sources */,
+				A0AC0BDB1E9BD44600EA3792 /* AppDelegate.swift in Sources */,
+				A09DF6741EB2429D0057FCE6 /* PanGestureView.swift in Sources */,
+				A0638C641EB767D10060FB76 /* newTaskSegue.swift in Sources */,
+				A0D5CF201ED73EF900180B9F /* Extensions.swift in Sources */,
+				A0AC0C1A1E9E267E00EA3792 /* EndMenuVC.swift in Sources */,
+				A0AC0C211E9E270B00EA3792 /* containerSegue.swift in Sources */,
+				A09DF6751EB2429D0057FCE6 /* PanGestureAction.swift in Sources */,
+				A01FED1C1EEE7F6300C2DEE8 /* ActionMenuButton.swift in Sources */,
+				A01FED1A1EEE7F4A00C2DEE8 /* YBAlertController.swift in Sources */,
+				A0498DA2201A806D0057EE00 /* LeaderboardVC.swift in Sources */,
+				A0AC0C161E9E263400EA3792 /* StartMenuVC.swift in Sources */,
+				A0AC0C191E9E267E00EA3792 /* GameVC.swift in Sources */,
+				A0325A061F07F2F80000D736 /* SettingsVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0AC0BE71E9BD44600EA3792 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0AC0BF01E9BD44600EA3792 /* fiveSecondsGameFinalTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0AC0BF21E9BD44600EA3792 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0AC0BFB1E9BD44600EA3792 /* fiveSecondsGameFinalUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0AC0BED1E9BD44600EA3792 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0AC0BD61E9BD44600EA3792 /* Sverigespelet */;
+			targetProxy = A0AC0BEC1E9BD44600EA3792 /* PBXContainerItemProxy */;
+		};
+		A0AC0BF81E9BD44600EA3792 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0AC0BD61E9BD44600EA3792 /* Sverigespelet */;
+			targetProxy = A0AC0BF71E9BD44600EA3792 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A0AC0BE31E9BD44600EA3792 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0AC0BE41E9BD44600EA3792 /* Base */,
+				A0BFBDAD1F76FE7100EA3022 /* sv */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A0AC0BFD1E9BD44600EA3792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A0AC0BFE1E9BD44600EA3792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A0AC0C001E9BD44600EA3792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACEC06068B071B81D3B0B43F /* Pods-Sverigespelet.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = fiveSecondsGameFinal/fiveSecondsGameFinal.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B4FFLKPWFW;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fiveSecondsGameFinal",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/fiveSecondsGameFinal/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucasOtterling.fiveSecondsGameFinal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		A0AC0C011E9BD44600EA3792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 362805B2D75C3FC6E739B41B /* Pods-Sverigespelet.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = fiveSecondsGameFinal/fiveSecondsGameFinal.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B4FFLKPWFW;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fiveSecondsGameFinal",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/fiveSecondsGameFinal/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucasOtterling.fiveSecondsGameFinal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		A0AC0C031E9BD44600EA3792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B4FFLKPWFW;
+				INFOPLIST_FILE = fiveSecondsGameFinalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucasOtterling.fiveSecondsGameFinalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sverigespelet.app/Sverigespelet";
+			};
+			name = Debug;
+		};
+		A0AC0C041E9BD44600EA3792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B4FFLKPWFW;
+				INFOPLIST_FILE = fiveSecondsGameFinalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucasOtterling.fiveSecondsGameFinalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sverigespelet.app/Sverigespelet";
+			};
+			name = Release;
+		};
+		A0AC0C061E9BD44600EA3792 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = B4FFLKPWFW;
+				INFOPLIST_FILE = fiveSecondsGameFinalUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucasOtterling.fiveSecondsGameFinalUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = fiveSecondsGameFinal;
+			};
+			name = Debug;
+		};
+		A0AC0C071E9BD44600EA3792 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = B4FFLKPWFW;
+				INFOPLIST_FILE = fiveSecondsGameFinalUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LucasOtterling.fiveSecondsGameFinalUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = fiveSecondsGameFinal;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0AC0BD21E9BD44600EA3792 /* Build configuration list for PBXProject "Sverigespelet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0AC0BFD1E9BD44600EA3792 /* Debug */,
+				A0AC0BFE1E9BD44600EA3792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0AC0BFF1E9BD44600EA3792 /* Build configuration list for PBXNativeTarget "Sverigespelet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0AC0C001E9BD44600EA3792 /* Debug */,
+				A0AC0C011E9BD44600EA3792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0AC0C021E9BD44600EA3792 /* Build configuration list for PBXNativeTarget "SverigespeletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0AC0C031E9BD44600EA3792 /* Debug */,
+				A0AC0C041E9BD44600EA3792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0AC0C051E9BD44600EA3792 /* Build configuration list for PBXNativeTarget "SverigespeletUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0AC0C061E9BD44600EA3792 /* Debug */,
+				A0AC0C071E9BD44600EA3792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0AC0BCF1E9BD44600EA3792 /* Project object */;
+}

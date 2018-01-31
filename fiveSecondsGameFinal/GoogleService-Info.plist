@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1034200572027-a64f1u0cmh911speg1e61gbjfb5sr7e6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1034200572027-a64f1u0cmh911speg1e61gbjfb5sr7e6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCF3ek8KNadrJkdJSgpr9q40H-400Q4NN4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1034200572027</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.LucasOtterling.fiveSecondsGameFinal</string>
+	<key>PROJECT_ID</key>
+	<string>admob-app-id-4808287418</string>
+	<key>STORAGE_BUCKET</key>
+	<string>admob-app-id-4808287418.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1034200572027:ios:9aabf17111be266e</string>
+	<key>DATABASE_URL</key>
+	<string>https://admob-app-id-4808287418.firebaseio.com</string>
+</dict>
+</plist>
