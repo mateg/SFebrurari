@@ -91,7 +91,7 @@ class LeaderboardVC: UIViewController {
         
         let uuid = UIDevice.current.identifierForVendor!.uuidString
         
-        Database.database().reference().child("leaderboard").child(uuid).child("name").setValue(name, withCompletionBlock: { (error,ref) in
+        Database.database().reference().child("leaderboard").child(id).child("name").setValue(name, withCompletionBlock: { (error,ref) in
             
             if error == nil {
                 
@@ -105,7 +105,7 @@ class LeaderboardVC: UIViewController {
         
         // Det här kan vara användarens facebook ID eller något annat unikt ID.
          let uuid = UIDevice.current.identifierForVendor!.uuidString
-        Database.database().reference().child("leaderboard").child(uuid).child("score").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+        Database.database().reference().child("leaderboard").child(id).child("score").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             
             let score2 = currentData.value as? Int ?? 0
             if score > score2 {
