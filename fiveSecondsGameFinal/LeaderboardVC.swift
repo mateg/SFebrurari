@@ -18,6 +18,8 @@ extension LeaderboardVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell
         print(scores[indexPath.row])
         
+        
+        // Fredrik. Här fyller jag i vad de värderna i raderna på tabellen ska vara
         if scores[indexPath.row]["name"] != nil {
         cell.textLabel?.text = scores[indexPath.row]["name"] as! String
         } else {
@@ -51,9 +53,10 @@ class LeaderboardVC: UIViewController {
         super.viewDidLoad()
         
         self.tableView.dataSource = self
+        
+        // Fredrik. Ladda ner scoresen från databsen
         downloadScores()
       
-       
         print(FBresult,"FB user")
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -89,8 +92,7 @@ class LeaderboardVC: UIViewController {
     
     static func setName(name:String, id:String) {
         
-        let uuid = UIDevice.current.identifierForVendor!.uuidString
-        
+        // Fredrik. Sätt namnet för facebook ID i databasen
         Database.database().reference().child("leaderboard").child(id).child("name").setValue(name, withCompletionBlock: { (error,ref) in
             
             if error == nil {
@@ -103,8 +105,8 @@ class LeaderboardVC: UIViewController {
     
     static func updateScore(score:Int, id:String) {
         
+        // Sätt scoren för användaren.
         // Det här kan vara användarens facebook ID eller något annat unikt ID.
-         let uuid = UIDevice.current.identifierForVendor!.uuidString
         Database.database().reference().child("leaderboard").child(id).child("score").runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             
             let score2 = currentData.value as? Int ?? 0
@@ -118,13 +120,8 @@ class LeaderboardVC: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             }
-            
-            
-            
+
         }
-        
-        //   if let user = Auth.auth().currentUser {
-        //   }
         
         
     }

@@ -799,7 +799,7 @@ if self.rewardBasedVideo?.isReady == true {
                 
                 let res = result as! NSDictionary
  
-                
+                // Fredrik. Efter att ha loggat in på facebook och anropat /me så uppdaterar jag namnet och scoren i databasen för Facebook id:et
                 LeaderboardVC.updateScore(score: self.scoreNumber,id:res.object(forKey: "id") as! String)
                 LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id:res.object(forKey: "id") as! String)
                 
@@ -811,6 +811,7 @@ if self.rewardBasedVideo?.isReady == true {
 
         }else{
             
+            // Om jag inte är inloggad så kallar jag på loggin och gör samma procedur 
             print("Facebook not logged in")
             FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) {
                 
@@ -851,6 +852,10 @@ if self.rewardBasedVideo?.isReady == true {
    print("Failed to start facebook graph request", error as Any)
    return
             }
+            
+            LeaderboardVC.updateScore(score: self.scoreNumber,id:res.object(forKey: "id") as! String)
+            LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id:res.object(forKey: "id") as! String)
+            
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
             self.present(vc, animated: true, completion: nil)
