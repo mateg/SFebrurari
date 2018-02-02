@@ -68,12 +68,14 @@ class LeaderboardVC: UIViewController {
         
         leaderboardDB.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            for child in snapshot.children {
-                print(child)
+            self.scores.removeAll()
+            
+            for rest in snapshot.children.allObjects as! [DataSnapshot] {
+                self.scores.append(rest.value as! [String : Any])
             }
             
-            self.scores = (snapshot.value as? NSDictionary)?.allValues as! Array<Dictionary>
-            self.scores.reverse()
+         //   self.scores = (snapshot.value as? NSDictionary)?.allValues as! Array<Dictionary>
+         //  self.scores.reverse()
             self.scores = self.scores.filter({dict in
                 
                 if (dict["score"] == nil) {

@@ -648,7 +648,7 @@ Lucas Otterling föddes i Stockholm på 90-talet men har tillbringat hälften av
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Va-zq-1Lp">
-                                <rect key="frame" x="18" y="386" width="339" height="130"/>
+                                <rect key="frame" x="17.5" y="386" width="340" height="130"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lsr-px-mJ6">
                                         <rect key="frame" x="0.0" y="25" width="79.5" height="80"/>
@@ -664,7 +664,7 @@ Lucas Otterling föddes i Stockholm på 90-talet men har tillbringat hälften av
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WwE-FK-NL3">
-                                        <rect key="frame" x="259" y="25" width="80.5" height="80"/>
+                                        <rect key="frame" x="260" y="25" width="79.5" height="80"/>
                                         <color key="backgroundColor" red="0.13088600337505341" green="0.32338157296180725" blue="0.56871235370635986" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="WwE-FK-NL3" secondAttribute="height" multiplier="1:1" id="TwJ-8A-MiE"/>
@@ -677,7 +677,7 @@ Lucas Otterling föddes i Stockholm på 90-talet men har tillbringat hälften av
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocK-PA-UkM">
-                                        <rect key="frame" x="104.5" y="0.0" width="129.5" height="130"/>
+                                        <rect key="frame" x="104.5" y="0.0" width="130.5" height="130"/>
                                         <color key="backgroundColor" red="0.13088600337505341" green="0.32338157296180725" blue="0.56871235370635986" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ocK-PA-UkM" secondAttribute="height" multiplier="1:1" id="MtB-TN-NRt"/>

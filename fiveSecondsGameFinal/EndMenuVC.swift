@@ -853,6 +853,8 @@ if self.rewardBasedVideo?.isReady == true {
    return
             }
             
+            let res = result as! NSDictionary
+            
             LeaderboardVC.updateScore(score: self.scoreNumber,id:res.object(forKey: "id") as! String)
             LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id:res.object(forKey: "id") as! String)
             
@@ -864,6 +866,7 @@ if self.rewardBasedVideo?.isReady == true {
         }
         
     }
+    
     //END OF FACEBOOK LOGIN
     
     //random notification banner
