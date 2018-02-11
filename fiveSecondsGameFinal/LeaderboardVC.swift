@@ -41,6 +41,8 @@ extension LeaderboardVC: UITableViewDataSource {
     
 }
 
+var score:Int?
+var name:String?
 
 class LeaderboardVC: UIViewController {
     
@@ -56,10 +58,27 @@ class LeaderboardVC: UIViewController {
         
         // Fredrik. Ladda ner scoresen från databsen
         downloadScores()
+       // getHighScoreForPlayer(id: facebookID)
       
         print(FBresult,"FB user")
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func getHighScoreForPlayer(id:String) {
+        
+        Database.database().reference().child("leaderboard").child(id).observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let dict = snapshot.value as? Dictionary<String,Any> {
+            
+            print(dict["score"])
+            print(dict["name"])
+                
+                score = dict["score"] as? Int;
+                name = dict["name"] as? String;
+                
+            }
+        }
     }
     
     func downloadScores() {
@@ -104,6 +123,7 @@ class LeaderboardVC: UIViewController {
         })
         
     }
+    
     
     static func updateScore(score:Int, id:String) {
         

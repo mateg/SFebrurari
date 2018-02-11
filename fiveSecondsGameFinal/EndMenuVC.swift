@@ -22,6 +22,8 @@ import NotificationBannerSwift
 import StoreKit
 import MarqueeLabel
 
+var facebookID = ""
+
 class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdDelegate, SwiftShareBubblesDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var scoreNumberLabel: UILabel!
@@ -798,7 +800,8 @@ if self.rewardBasedVideo?.isReady == true {
                 }
                 
                 let res = result as! NSDictionary
- 
+                
+                facebookID = res.object(forKey: "id") as! String
                 // Fredrik. Efter att ha loggat in på facebook och anropat /me så uppdaterar jag namnet och scoren i databasen för Facebook id:et
                 LeaderboardVC.updateScore(score: self.scoreNumber,id:res.object(forKey: "id") as! String)
                 LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id:res.object(forKey: "id") as! String)
@@ -854,6 +857,9 @@ if self.rewardBasedVideo?.isReady == true {
             }
             
             let res = result as! NSDictionary
+            
+            facebookID = res.object(forKey: "id") as! String
+            
             
             LeaderboardVC.updateScore(score: self.scoreNumber,id:res.object(forKey: "id") as! String)
             LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id:res.object(forKey: "id") as! String)
