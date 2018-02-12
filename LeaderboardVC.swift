@@ -171,41 +171,30 @@ class LeaderboardVC: UIViewController {
         }
     }
     
-    func downloadScores() {
+
+        func downloadScores() {
+        
+        let leaderboardDB = Database.database().reference().child("leaderboard").queryOrdered(byChild: "score").queryLimited(toLast: 100)
         
         leaderboardDB.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            //print(snapshot.value)
             
             self.scores.removeAll()
             
             for rest in snapshot.children.allObjects as! [DataSnapshot] {
                 self.scores.append(rest.value as! [String : Any])
-                /*
-                let fruitsDict = ["apple": 5, "pear": 9, "grape": 1]
-                let fruitsTupleArray = fruitsDict.sorted{ $0.value > $1.value }
-                
-                fruitsTupleArray // [(.0 "pear", .1 9), (.0 "apple", .1 5), (.0 "grape", .1 1)]
-                
-                for (fruit,votes) in fruitsTupleArray {
-                    print(fruit,votes)
-                }
-                
-                fruitsTupleArray.first?.key   // "pear"
-                fruitsTupleArray.first?.value   // 9*/
-                self.scores.sort(by: { (dict1,dict2) in return dict1["score"] > dict2["score"]})
-                
-                print(self.scores, "hello")
-                //self.scores.sorted { ($0["score"] as! String) < ($1["score"] as! String) }
-                //self.scores.sort(by: <#T##(Dictionary<String, Any>, Dictionary<String, Any>) throws -> Bool#>)
-                //self.scores.sorted { ($0["score"] as! String) < ($1["score"] as! String) }
-
             }
             
-             //self.scores = self.scores.reversed()
-            
-            //   self.scores = (snapshot.value as? NSDictionary)?.allValues as! Array<Dictionary>
-            //  self.scores.reverse()
+         //   self.scores = (snapshot.value as? NSDictionary)?.allValues as! Array<Dictionary>
+          self.scores.reverse()
+            self.scores = self.scores.filter({dict in
+                
+                if (dict["score"] == nil) {
+                    return false
+                }
+                
+                return true
+                
+            })
             
             self.tableView.reloadData()
             
