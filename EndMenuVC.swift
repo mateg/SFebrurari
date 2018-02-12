@@ -22,7 +22,8 @@ import NotificationBannerSwift
 import StoreKit
 import MarqueeLabel
 
-    var userTopScore = Int()
+var userTopScore:Int? = nil
+var facebookID = ""
 
 class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdDelegate, SwiftShareBubblesDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, FBSDKLoginButtonDelegate {
 
@@ -109,12 +110,9 @@ class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdD
             scoreTextLabel.text = "\"Jag kom som en kung, jag lämnade som en legend.\"⚽️"
         }
         
-        //update user if highscore //FREDRIK
-        if scoreNumber >= userTopScore  {
             userTopScore = scoreNumber
-            print(userTopScore, "Users highscore")
-            //ADD: CONFETTI EFFECT ON NEXT VERSIONS?
-        }
+        //Sets the value of the specified default key to the specified integer value.
+            //print(userTopScore, "Users highscore")
         
         starImageView.layer.cornerRadius = 10
         scoreTextLabel.type = .leftRight
@@ -633,7 +631,7 @@ if self.rewardBasedVideo?.isReady == true {
    
    if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
        guard let composer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
-       composer.setInitialText("Ladda ner Sverigespelet och försök slå mina \(userTopScore) sverigepoäng😉🇸🇪!")
+       composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
        composer.add(URL(string: "sverigespelet.co"))
        present(composer, animated: true, completion: nil)
    } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -651,7 +649,7 @@ if self.rewardBasedVideo?.isReady == true {
    
    if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
        guard let composer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-       composer.setInitialText("Ladda ner Sverigespelet och försök slå mina \(userTopScore) sverigepoäng😉🇸🇪!")
+       composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
        composer.add(URL(string: "sverigespelet.co"))
        present(composer, animated: true, completion: nil)
    } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -679,7 +677,7 @@ if self.rewardBasedVideo?.isReady == true {
    break
             case .whatsapp:
    //whatsApp
-   let msg = "Ladda ner Sverigespelet och försök slå mina \(userTopScore) sverigepoäng😉🇸🇪!"
+   let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
    let urlStringEncoded = msg.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
    let urlString  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
    
@@ -702,7 +700,7 @@ if self.rewardBasedVideo?.isReady == true {
        let mailcontroller = MFMailComposeViewController()
        mailcontroller.mailComposeDelegate = self;
        mailcontroller.setSubject("Kolla vad jag fick på Sverigespelet!")
-       mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mina \(userTopScore) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
+       mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
     
        self.present(mailcontroller, animated: true, completion: nil)
     
@@ -735,7 +733,7 @@ if self.rewardBasedVideo?.isReady == true {
    if (MFMessageComposeViewController.canSendText()) {
        let controller = MFMessageComposeViewController()
        controller.messageComposeDelegate = self
-       controller.body = "Ladda ner Sverigespelet och försök slå mina \(userTopScore) sverigepoäng😉🇸🇪!"
+       controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
     
        self.present(controller, animated: true, completion: nil)
     
@@ -800,10 +798,16 @@ if self.rewardBasedVideo?.isReady == true {
                 }
                 
                 self.res = result as! NSDictionary
-                
+                facebookID = self.res.object(forKey: "id") as! String
+
                 // Fredrik. Efter att ha loggat in på facebook och anropat /me så uppdaterar jag namnet och scoren i databasen för Facebook id:et
-                LeaderboardVC.updateScore(score: userTopScore, id:self.res.object(forKey: "id") as! String)
-                LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id: self.res.object(forKey: "id") as! String)
+                LeaderboardVC.updateScore(score: self.scoreNumber,id:self.res.object(forKey: "id") as! String, completion: {
+                    
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+                    self.present(vc, animated: true, completion: nil)
+                    
+                })
+                LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
                 
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
                 self.present(vc, animated: true, completion: nil)
@@ -813,26 +817,13 @@ if self.rewardBasedVideo?.isReady == true {
             
         }else{
             
-            // Om jag inte är inloggad så kallar jag på loggin och gör samma procedur
-            print("Facebook not logged in")
-            FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) {
-                
-                (result, error) in
-                
-                if error != nil {
-                    print("Custom Facebook Login failed")
-                    return
-                }
-                
-                
-                self.grabEmailAddress()
-                
-            }
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FacebookVC")
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
     func grabEmailAddress() { //FREDRIK
-        
+            
         //send to firebase"
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else {return}
@@ -855,9 +846,16 @@ if self.rewardBasedVideo?.isReady == true {
                 return
             }
             
-            LeaderboardVC.updateScore(score: userTopScore ,id:self.res.object(forKey: "id") as! String)
-            LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
+            let res = result as! NSDictionary
             
+            facebookID = res.object(forKey: "id") as! String
+            
+            LeaderboardVC.updateScore(score: userTopScore! ,id:self.res.object(forKey: "id") as! String, completion: { 
+                
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+                self.present(vc, animated: true, completion: nil)
+            })
+            LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
             self.present(vc, animated: true, completion: nil)

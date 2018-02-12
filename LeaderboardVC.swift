@@ -171,21 +171,22 @@ class LeaderboardVC: UIViewController {
         }
     }
     
-
-        func downloadScores() {
+    func downloadScores() {
         
-        let leaderboardDB = Database.database().reference().child("leaderboard").queryOrdered(byChild: "score").queryLimited(toLast: 100)
+        let leaderboardDB = Database.database().reference().child("leaderboard").queryOrdered(byChild: "score")
         
         leaderboardDB.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            //print(snapshot.value)
             
             self.scores.removeAll()
             
             for rest in snapshot.children.allObjects as! [DataSnapshot] {
                 self.scores.append(rest.value as! [String : Any])
+
             }
             
-         //   self.scores = (snapshot.value as? NSDictionary)?.allValues as! Array<Dictionary>
-          self.scores.reverse()
+            self.scores.reverse()
             self.scores = self.scores.filter({dict in
                 
                 if (dict["score"] == nil) {
@@ -195,6 +196,11 @@ class LeaderboardVC: UIViewController {
                 return true
                 
             })
+            
+             //self.scores = self.scores.reversed()
+            
+            //   self.scores = (snapshot.value as? NSDictionary)?.allValues as! Array<Dictionary>
+            //  self.scores.reverse()
             
             self.tableView.reloadData()
             
@@ -267,7 +273,7 @@ class LeaderboardVC: UIViewController {
             self.bubbles?.show()
             alertController.dismiss()
         }
-        alertController.addButton(title: "Logga ut") {
+        alertController.addButton(icon: UIImage(named: "signout"),title: "Logga ut") {
             print("Facebook logged in")
             let alert = UIAlertController(title: "Logga ut från Facebook?", message: "Du kommer inte kunna se topplistorna och din spelupplevelse samt kontakt med Sverigespelets sociala media community försämras.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Logga ut", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in
@@ -277,7 +283,7 @@ class LeaderboardVC: UIViewController {
             alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        alertController.cancelButtonTitle = "Avbryt"
+        alertController.cancelButtonTitle = "OK!"
         
         // show alert
         alertController.show()
@@ -299,7 +305,7 @@ class LeaderboardVC: UIViewController {
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mina \(score!) sverigepoäng😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -317,7 +323,7 @@ class LeaderboardVC: UIViewController {
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mina \(score!) sverigepoäng😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -345,7 +351,7 @@ class LeaderboardVC: UIViewController {
                 break
             case .whatsapp:
                 //whatsApp
-                let msg = "Ladda ner Sverigespelet och försök slå mina \(score!) sverigepoäng😉🇸🇪!"
+                let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
                 let urlStringEncoded = msg.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
                 let urlString  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
                 
@@ -368,7 +374,7 @@ class LeaderboardVC: UIViewController {
                     let mailcontroller = MFMailComposeViewController()
                     mailcontroller.mailComposeDelegate = self;
                     mailcontroller.setSubject("Kolla vad jag fick på Sverigespelet!")
-                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mina \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
+                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
                     
                     self.present(mailcontroller, animated: true, completion: nil)
                     
@@ -401,7 +407,7 @@ class LeaderboardVC: UIViewController {
                 if (MFMessageComposeViewController.canSendText()) {
                     let controller = MFMessageComposeViewController()
                     controller.messageComposeDelegate = self
-                    controller.body = "Ladda ner Sverigespelet och försök slå mina \(score!) sverigepoäng😉🇸🇪!"
+                    controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
                     
                     self.present(controller, animated: true, completion: nil)
                     

@@ -53,6 +53,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
 //pageviewcontroller
     var pageViewController: UIPageViewController!
     var pageImages: NSArray! //NSArray(objects: "More Offers 1", "More Offers 2")
+    var pageType = String()
 
     //buttons set-up
     override func viewDidLayoutSubviews() {
@@ -118,7 +119,6 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
         
         pastelView.startAnimation()
         view.insertSubview(pastelView, at: 0)
-        print(userTopScore, "Users highscore")
  
         //check microphone status
         let microPhoneStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.audio)
@@ -208,7 +208,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
             self.handleCustomFacebookLogin()
             
         }
-        leaderboard.setImage(UIImage(named: "yellow facebook"), for: .normal)
+        leaderboard.setImage(UIImage(named: "leaderboard"), for: .normal)
         leaderboard.backgroundColor = UIColor().SwedenBlue()
         
         /* CREATES BASIC FACEBOOK LOGIN BUTTON
@@ -388,7 +388,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mig😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -406,7 +406,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mig 😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -434,7 +434,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 break
             case .whatsapp:
                 //whatsApp
-                let msg = "Ladda ner Sverigespelet och försök slå mig😉🇸🇪!"
+                let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
                 let urlStringEncoded = msg.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
                 let urlString  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
                 
@@ -458,7 +458,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                     mailcontroller.mailComposeDelegate = self;
                     mailcontroller.setToRecipients(["lucas@sverigespelet.co"])
                     mailcontroller.setSubject("Utmaning - försök att slå mig på Sverigespelet!")
-                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mig😉🇸🇪!</p></body></html>", isHTML: true)
+                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
                     
                     self.present(mailcontroller, animated: true, completion: nil)
                     
@@ -491,7 +491,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 if (MFMessageComposeViewController.canSendText()) {
                     let controller = MFMessageComposeViewController()
                     controller.messageComposeDelegate = self
-                    controller.body = "Ladda ner Sverigespelet och försök slå mig😉🇸🇪!"
+                    controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
                     
                     self.present(controller, animated: true, completion: nil)
                     
@@ -645,11 +645,16 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 }
                 
                 self.res = result as! NSDictionary
+                facebookID = self.res.object(forKey: "id") as! String
                 
-                // Fredrik. Efter att ha loggat in på facebook och anropat /me så uppdaterar jag namnet och scoren i databasen för Facebook id:et
-                LeaderboardVC.updateScore(score: userTopScore, id:self.res.object(forKey: "id") as! String)
-                LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id: self.res.object(forKey: "id") as! String)
-                
+                if userTopScore != nil {
+                    print(userTopScore!)
+                    LeaderboardVC.updateScore(score: userTopScore!, id:self.res.object(forKey: "id") as! String, completion: {
+                            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+                            self.present(vc, animated: true, completion: nil)
+                            LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
+                        })
+                }
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
                 self.present(vc, animated: true, completion: nil)
                 
@@ -657,9 +662,13 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
             }
             
         }else{
+
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FacebookVC")
+            self.present(vc, animated: true, completion: nil)
             
+            //TODO: OPEN VC WITH IMAGE AS OF INTROVC
             // Om jag inte är inloggad så kallar jag på loggin och gör samma procedur
-            print("Facebook not logged in")
+            /*print("Facebook not logged in")
             FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) {
                 
                 (result, error) in
@@ -669,10 +678,9 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                     return
                 }
                 
-                
                 self.grabEmailAddress()
                 
-            }
+            }*/
         }
     }
     
@@ -700,6 +708,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 return
             }
             
+            facebookID = self.res.object(forKey: "id") as! String
             LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id: self.res.object(forKey: "id") as! String)
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
@@ -771,7 +780,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 
                 //show notificationBanner
                 print("loginFB notificationBanner shown")
-                notificationBannerTitle = "Logga in med Facebook?"
+                notificationBannerTitle = "Se topplistor över de bästa spelarna!"
                 notificationBannerSubtitle = "Gå med i Sverigespelets Facebook community!"
                 //default design of notificationBanner
                 let notificationBanner = NotificationBanner(title: notificationBannerTitle, subtitle: notificationBannerSubtitle, leftView: leftView, style: .info)
@@ -1000,11 +1009,9 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
     } //end of Randomize notificationBanner informing of ___
     
     //MARK: - PageViewController Data Source
-    func viewControllerAtIndex(index: Int) -> UIViewController
-    {
+    func viewControllerAtIndex(index: Int) -> UIViewController{
         
-        if  ((self.pageImages.count == 0) || (index >= self.pageImages.count))
-        {
+        if  ((self.pageImages.count == 0) || (index >= self.pageImages.count)){
             return IntroViewController()
         }
         
@@ -1021,8 +1028,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
         let vc = viewController as! IntroViewController
         var index = vc.pageIndex as Int
         
-        if (index == 0 || index == NSNotFound)
-        {
+        if (index == 0 || index == NSNotFound){
             return nil
         }
         
@@ -1035,7 +1041,6 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
         
         let vc = viewController as! IntroViewController
         var index = vc.pageIndex as Int
-        
         
         if (index == NSNotFound)
         {
