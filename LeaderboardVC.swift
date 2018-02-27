@@ -46,14 +46,21 @@ extension LeaderboardVC: UITableViewDataSource, SwiftShareBubblesDelegate, MFMes
         }
             cell.rankLabel?.text = "#\(indexPath.row + 1)"
         
+       /* if cell.nameLabel.text == name! {
+            cell.contentView.backgroundColor = UIColor().SwedenYellow()
+            cell.nameLabel.backgroundColor = UIColor().SwedenYellow()
+            cell.rankLabel.backgroundColor = UIColor().SwedenYellow()
+            cell.scoreLabel.backgroundColor = UIColor().SwedenYellow()
+            cell.nameLabel.textColor = UIColor().SwedenBlue()
+            cell.rankLabel.textColor = UIColor().SwedenBlue()
+            cell.scoreLabel.textColor = UIColor().SwedenBlue()
+        }*/
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scores.count
     }
-    
 }
 
 var score:Int?
@@ -66,6 +73,7 @@ class LeaderboardVC: UIViewController {
     @IBOutlet weak var scoreBarBtn: UIBarButtonItem!
     @IBOutlet weak var topNavBarItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var noDataView: UIView!
     let leaderboardDB = Database.database().reference().child("leaderboard")
     var scores = Array<Dictionary<String, Any>>()
     var defaults = UserDefaults.standard
@@ -106,6 +114,8 @@ class LeaderboardVC: UIViewController {
         
         //set up basic
         self.tableView.dataSource = self
+        tableView.backgroundView = noDataView
+        noDataView.backgroundColor = UIColor().SwedenBlue()
         let image = UIImage(named: "Sverigespelet rounded mini")
         let imageView = UIImageView(image:image)
         self.topNavBarItem.titleView = imageView
@@ -119,7 +129,6 @@ class LeaderboardVC: UIViewController {
             NSAttributedStringKey.foregroundColor : UIColor().SwedenBlue(),
             ], for: .normal)
         scoreBarBtn.title = "Sverigepoäng"
-        
         
         //Check if product is purchased
         if (defaults.bool(forKey: "AdFreePurchased")){
@@ -161,10 +170,18 @@ class LeaderboardVC: UIViewController {
             
             if let dict = snapshot.value as? Dictionary<String,Any> {
                 
-                print(dict["score"]!)
-                print(dict["name"]!)
+                //print(dict["score"]!)
+                //print(dict["name"]!)
                 
-                score = dict["score"] as? Int;
+                if dict["score"] != nil {
+                    print(dict["score"]!)
+                }
+                
+                if score != nil {
+                    score = dict["score"] as? Int;
+                } else {
+                    score = 0
+                }
                 name = dict["name"] as? String;
                 
             }
@@ -224,17 +241,26 @@ class LeaderboardVC: UIViewController {
     static func updateScore(score:Int, id:String, completion: @escaping (() -> Void)) {
         
             Database.database().reference().child("leaderboard").child(id).child("score").observeSingleEvent(of: .value, with: { (snapshot) in
-        
-                let value = snapshot.value as? Int
                 
-                if (score > value!) {
+                var scoreValue = snapshot.value as? Int
+                if scoreValue != nil {
+                    print(scoreValue!)
+                } else {
+                    scoreValue = 0
+                }
+                
+                print("value", scoreValue!)
+                if (score >= scoreValue!) {
              Database.database().reference().child("leaderboard").child(id).child("score").setValue(score, withCompletionBlock: { (error,ref) in
-                
                     completion()
-                
                     })
                     
-                }
+                } /*else {
+                    let nullScore = 0
+                    Database.database().reference().child("leaderboard").child(id).child("score").setValue(nullScore, withCompletionBlock: { (error,ref) in
+                        completion()
+                    })
+                }*/
                 
         })
         
@@ -248,7 +274,11 @@ class LeaderboardVC: UIViewController {
         
         let alertController = YBAlertController(style: .Alert)
         alertController.title = "👤\(name!)"
-        alertController.message = "Rekord: \(score!) Sverigepoäng🇸🇪"
+        if score == 0 {
+            alertController.message = "Rekord: OBS! Stäng topplistan och prova igen."
+        } else {
+            alertController.message = "Rekord: \(score!) Sverigepoäng🇸🇪"
+        }
         /*alertController.addButton(title: "Ändra användarnamn🗣") {
             //change updateName
             let alert = UIAlertController(title: "Ändra användarnamn🗣", message: "Inte sugen på att ha ditt riktiga namn? Ändra ditt användarnamn här.", preferredStyle: UIAlertControllerStyle.alert)
@@ -305,7 +335,7 @@ class LeaderboardVC: UIViewController {
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -323,7 +353,7 @@ class LeaderboardVC: UIViewController {
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -351,7 +381,7 @@ class LeaderboardVC: UIViewController {
                 break
             case .whatsapp:
                 //whatsApp
-                let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
+                let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱"
                 let urlStringEncoded = msg.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
                 let urlString  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
                 
@@ -374,7 +404,7 @@ class LeaderboardVC: UIViewController {
                     let mailcontroller = MFMailComposeViewController()
                     mailcontroller.mailComposeDelegate = self;
                     mailcontroller.setSubject("Kolla vad jag fick på Sverigespelet!")
-                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
+                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱</p></body></html>", isHTML: true)
                     
                     self.present(mailcontroller, animated: true, completion: nil)
                     
@@ -407,7 +437,7 @@ class LeaderboardVC: UIViewController {
                 if (MFMessageComposeViewController.canSendText()) {
                     let controller = MFMessageComposeViewController()
                     controller.messageComposeDelegate = self
-                    controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
+                    controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱"
                     
                     self.present(controller, animated: true, completion: nil)
                     

@@ -9,12 +9,11 @@
 import UIKit
 import CoreMotion
 import AVFoundation
-import CoreAudio
 import GoogleMobileAds
 import Pastel
 import MarqueeLabel
 
-class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GADBannerViewDelegate  {
+class GameVC: UIViewController, UITextFieldDelegate, GADBannerViewDelegate  { //AVAudioRecorderDelegate
 
     //General
     @IBOutlet weak var bannerView: GADBannerView!
@@ -139,11 +138,11 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
     var backgroundNose = UIImageView()
     var zlatanHead = UIImageView()
     //Blow in Mic
-    var recorder: AVAudioRecorder!
-    var levelTimer = Timer()
-    var lowPassResults: Double = 0.0
-    var microphoneStatusString = String()
-    var session = AVAudioSession.sharedInstance()
+//    var recorder: AVAudioRecorder!
+//    var levelTimer = Timer()
+//    var lowPassResults: Double = 0.0
+//    var microphoneStatusString = String()
+//    var session = AVAudioSession.sharedInstance()
     //check if reward has been used (happens after view of reward video on end menu)
     var rewardUsed = String()
     
@@ -410,6 +409,7 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
                     "Jocke & Jonna",
                     "Samir Badran",
                     "Hedvig Lindahl",
+                    "Philip Ekberg",
                 ]
 
             } else if specialTypeString == "Random" {
@@ -830,7 +830,6 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
                     "Nathalie Danielsson",
                     "Theo Haraldsson",
                     "Astrid Lindgren",
-                    "Jacob Öberg",
                     "Linn Ahlborg",
                     "Jon Olsson",
                     "Bianca Wahlgren Ingrosso",
@@ -841,6 +840,7 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
                     "Jocke & Jonna",
                     "Samir Badran",
                     "Hedvig Lindahl",
+                    "Philip Ekberg",
                     
                     //sport clubs
                     "IF Elfsborg", "KSSS", "IK Sirius", "Ludvika",
@@ -1277,8 +1277,8 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
             //ha en svensk "waving flag" -> animation som sker när man blåser tillräckligt på skärmen 
             //https://learnappdevelopment.com/uncategorized/how-to-record-sound-with-swift-3-and-ios-10/
             
-            //set up the URL for the audio file
-            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            //set up the URL for the audio file CRASH IN VERSION... COMPROMISE
+          /*  let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             let docsDirect = paths[0]
             let audioUrl = docsDirect.appendingPathComponent("audioFileName.m4a")
 
@@ -1307,7 +1307,7 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
                 // failed to record! // error
                 print("blow - failed to record microphone!")
             }
-            
+            */
         } else if mainTypeString == "Swipe Left" {
             
             //get user to pan ("drag") on the button left to change animation for every swipe to create animation of kaviar "blir utklämd"
@@ -1902,8 +1902,8 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
     
     @objc func correctAnswerWithDelay(){
         if mainTypeString == "Blow in Mic" {
-            levelTimer.invalidate()
-            recorder.stop()
+           // levelTimer.invalidate()
+            //recorder.stop()
         }
         
         self.correctAnswer()
@@ -2441,9 +2441,9 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
                 
                 
                 //blow in mic måste vara sist på ALLA! SÅ att den kan tas bort ifall-->
-                if microphoneStatusString == "NO" {
+                /*if microphoneStatusString == "NO" {
                     mainTypeArray.removeLast()
-                }
+                }*/
                 
                 //Randomizing the type =
                 let range: UInt32 = UInt32(mainTypeArray.count)
@@ -2469,7 +2469,7 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
                 destination.scoreNumber = score
                 destination.failsNumber = fails
                 destination.timeNumber = totalSeconds
-                destination.microphoneStatusString = microphoneStatusString
+                //destination.microphoneStatusString = microphoneStatusString
                 destination.rewardUsed = rewardUsed
                 destination.formerMainTypeString = mainTypeString
                 destination.formerSpecialTypeString = specialTypeString
@@ -2982,7 +2982,7 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
     
 //MARK: Blow in Mic
     //http://stackoverflow.com/questions/31230854/ios-detect-blow-into-mic-and-convert-the-results-swift
-    @objc func levelTimerCallback() {
+   /* @objc func levelTimerCallback() {
         
         //we have to update meters before we can get the metering values
         recorder.updateMeters()
@@ -3010,7 +3010,7 @@ class GameVC: UIViewController, UITextFieldDelegate, AVAudioRecorderDelegate, GA
         } else {
             print("blow no good")
         }
-    }//end of blow in mic
+    }//end of blow in mic*/
     
 //MARK: Left Swipe Gesture
     @objc func leftSwipeGesture(sender: UISwipeGestureRecognizer){

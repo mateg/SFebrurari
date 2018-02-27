@@ -301,25 +301,36 @@ Lucas Otterling föddes i Stockholm på 90-talet men har tillbringat hälften av
                                     <constraint firstItem="AD7-KJ-Yny" firstAttribute="top" secondItem="VF8-uD-8nu" secondAttribute="top" id="wra-dN-Jgv"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ditt högsta rekord kommer att laddas upp till vår topplista." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoV-ze-biA">
+                                <rect key="frame" x="30" y="521" width="315" height="21"/>
+                                <fontDescription key="fontDescription" name="YanoneKaffeesatz-Regular" family="Yanone Kaffeesatz" pointSize="1"/>
+                                <color key="textColor" red="0.91941899061203003" green="0.82425016164779663" blue="0.43912994861602783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="HoV-ze-biA" secondAttribute="trailing" constant="14" id="36b-FO-zJv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OUj-ch-32v" secondAttribute="trailing" constant="14" id="3t4-7X-lbr"/>
                             <constraint firstItem="OUj-ch-32v" firstAttribute="centerX" secondItem="1mX-0Q-UGR" secondAttribute="centerX" id="5jp-tq-WLP"/>
                             <constraint firstItem="OUj-ch-32v" firstAttribute="width" secondItem="OUj-ch-32v" secondAttribute="height" multiplier="9:2" id="6ZJ-PR-SlX"/>
                             <constraint firstItem="VF8-uD-8nu" firstAttribute="top" secondItem="cqS-o0-F4o" secondAttribute="bottom" constant="36" id="BBX-Gp-VnW"/>
                             <constraint firstItem="cqS-o0-F4o" firstAttribute="centerX" secondItem="1mX-0Q-UGR" secondAttribute="centerX" id="JBO-HL-K6x"/>
                             <constraint firstItem="cqS-o0-F4o" firstAttribute="top" secondItem="OUj-ch-32v" secondAttribute="bottom" constant="28" id="Su5-uf-bwK"/>
+                            <constraint firstItem="HoV-ze-biA" firstAttribute="top" secondItem="cqS-o0-F4o" secondAttribute="bottom" id="baC-al-Zxk"/>
                             <constraint firstAttribute="trailing" secondItem="cqS-o0-F4o" secondAttribute="trailing" id="cKr-JG-7eY"/>
                             <constraint firstItem="EJq-W3-AGh" firstAttribute="top" secondItem="VF8-uD-8nu" secondAttribute="bottom" constant="37" id="hgm-sN-zDB"/>
                             <constraint firstItem="VF8-uD-8nu" firstAttribute="leading" secondItem="1mX-0Q-UGR" secondAttribute="leadingMargin" constant="14" id="jiR-7P-1jj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VF8-uD-8nu" secondAttribute="trailing" constant="14" id="mqp-rb-FVF"/>
                             <constraint firstItem="cqS-o0-F4o" firstAttribute="leading" secondItem="1mX-0Q-UGR" secondAttribute="leading" id="mqx-sO-MOm"/>
+                            <constraint firstItem="HoV-ze-biA" firstAttribute="leading" secondItem="1mX-0Q-UGR" secondAttribute="leadingMargin" constant="14" id="naS-d8-iAB"/>
+                            <constraint firstItem="VF8-uD-8nu" firstAttribute="top" secondItem="HoV-ze-biA" secondAttribute="bottom" constant="15" id="ugK-8T-qZc"/>
                             <constraint firstItem="OUj-ch-32v" firstAttribute="leading" secondItem="1mX-0Q-UGR" secondAttribute="leadingMargin" constant="14" id="w0i-kZ-mn8"/>
                             <constraint firstItem="cqS-o0-F4o" firstAttribute="centerY" secondItem="1mX-0Q-UGR" secondAttribute="centerY" id="wKO-tF-G3B"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataUploadLabel" destination="HoV-ze-biA" id="y9E-jW-9ah"/>
                         <outlet property="imageView" destination="cqS-o0-F4o" id="VcW-Qf-K3G"/>
                         <outlet property="noBtn" destination="AD7-KJ-Yny" id="MLl-3G-kRm"/>
                         <outlet property="yesBtn" destination="wLM-9g-ziW" id="uQ6-tU-YA3"/>
@@ -1067,6 +1078,7 @@ Lucas Otterling föddes i Stockholm på 90-talet men har tillbringat hälften av
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="qZU-YN-8q6" id="GCM-VI-ceh"/>
+                        <outlet property="noDataView" destination="RQx-AX-pOK" id="brg-xW-OLC"/>
                         <outlet property="rankBarBtn" destination="BWn-s4-fxC" id="sFW-TO-X0l"/>
                         <outlet property="scoreBarBtn" destination="JQW-sP-Wm4" id="WWa-vT-TXV"/>
                         <outlet property="tableView" destination="Arq-Q9-EI3" id="AY5-XJ-POR"/>
@@ -1074,6 +1086,27 @@ Lucas Otterling föddes i Stockholm på 90-talet men har tillbringat hälften av
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWa-P2-rhx" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="RQx-AX-pOK">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Laddar... Har du internet?🌍" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge4-OO-JiN">
+                            <rect key="frame" x="16" y="39" width="208" height="51"/>
+                            <fontDescription key="fontDescription" name="YanoneKaffeesatz-Bold" family="Yanone Kaffeesatz" pointSize="15"/>
+                            <color key="textColor" red="0.93488395214080811" green="0.82081317901611328" blue="0.36458685994148254" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ge4-OO-JiN" secondAttribute="trailing" constant="16" id="byD-Uv-3Xm"/>
+                        <constraint firstAttribute="bottom" secondItem="ge4-OO-JiN" secondAttribute="bottom" constant="38" id="gHv-0R-Heb"/>
+                        <constraint firstItem="ge4-OO-JiN" firstAttribute="top" secondItem="RQx-AX-pOK" secondAttribute="top" constant="39" id="nuP-hA-Xjr"/>
+                        <constraint firstItem="ge4-OO-JiN" firstAttribute="centerY" secondItem="RQx-AX-pOK" secondAttribute="centerY" id="v9f-TE-sUg"/>
+                        <constraint firstItem="ge4-OO-JiN" firstAttribute="leading" secondItem="RQx-AX-pOK" secondAttribute="leading" constant="16" id="vvo-8u-cJ2"/>
+                        <constraint firstItem="ge4-OO-JiN" firstAttribute="centerX" secondItem="RQx-AX-pOK" secondAttribute="centerX" id="y8M-T5-Zn0"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1908" y="-649.02548725637189"/>
         </scene>

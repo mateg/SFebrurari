@@ -18,6 +18,7 @@ class FacebookVC: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var yesBtn: UIButton!
     @IBOutlet weak var noBtn: UIButton!
+    @IBOutlet weak var dataUploadLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,8 @@ class FacebookVC: UIViewController, FBSDKLoginButtonDelegate {
         noBtn.tintColor = UIColor().SwedenYellow()
         noBtn.titleLabel?.textColor = UIColor().SwedenYellow()
         noBtn.layer.cornerRadius = 20
+        dataUploadLabel.setSizeFont(sizeFont: 12)
+
 
     }
     @IBAction func noTapped(_ sender: Any) {
@@ -125,6 +128,7 @@ class FacebookVC: UIViewController, FBSDKLoginButtonDelegate {
                 print("something went wrong with the Facebook User", error ?? "")
                 return
             }
+            
             print("Successfully logged in with Facebook user in Firebase", user ?? "")
             let notificationBannerTitle = "Välkommen, nu är du inloggad😍"
             let notificationBannerSubtitle = "Klicka på 'Topplista-knappen' igen!"
@@ -138,7 +142,6 @@ class FacebookVC: UIViewController, FBSDKLoginButtonDelegate {
                 print("notificationBanner tapped")
             }
             notificationBanner.show()
-            
         }
         
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {(connection, result, error) in
@@ -147,8 +150,25 @@ class FacebookVC: UIViewController, FBSDKLoginButtonDelegate {
                 print("Failed to start facebook graph request", error as Any)
                 return
             }
+            
+            let res = result as! NSDictionary
+            
+            facebookID = res.object(forKey: "id") as! String
+            
+            if userTopScore != nil {
+                print("userTopScore",userTopScore!)
+            } else {
+                userTopScore = 0
+                print("userTopScore",userTopScore!)
+
+            }
+            LeaderboardVC.updateScore(score: userTopScore! ,id: res.object(forKey: "id") as! String, completion: {})
+            LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id: res.object(forKey: "id") as! String)
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+            self.present(vc, animated: true, completion: nil)
+            
             print(result!) //print out the different crediters of the user
         }
-        
     }//END OF FACEBOOK LOGIN
 }

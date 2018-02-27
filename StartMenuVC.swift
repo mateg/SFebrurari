@@ -21,15 +21,15 @@ import StoreKit
 import EggRating
 import NotificationBannerSwift
 
-class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, SwiftShareBubblesDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver, FBSDKLoginButtonDelegate, UIPageViewControllerDataSource   {
+class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDelegate, SwiftShareBubblesDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver, FBSDKLoginButtonDelegate, UIPageViewControllerDataSource    {
 
     var sendMainTypeString = String()
-    var mainTypeArray = ["Images", "Game Art", "Orientation Change", "Button Pattern", "Button Tap",  "Button Quick", "Pan Gesture", "KYC", "Core Motion", "Find hidden", "Doesn't fit", "End sentence", "Long Press", "Multiple Tap Button", "Image Collide",  "Swipe Left", "Swipe Gesture", "Swipe Down", "Don't Press", "Blow in Mic" ]//"Images", "Game Art", "Orientation Change", "Button Pattern", "Button Tap",  "Button Quick", "Pan Gesture", "KYC", "Core Motion", "Find hidden", "Doesn't fit", "End sentence", "Long Press", "Multiple Tap Button", "Image Collide",  "Swipe Left", "Swipe Gesture", "Swipe Down", "Don't Press", "Blow in Mic"  //out-commented levels: "Numbers", "Add 1", "Run a lap"
+    var mainTypeArray = ["Images", "Game Art", "Orientation Change", "Button Pattern", "Button Tap",  "Button Quick", "Pan Gesture", "KYC", "Core Motion", "Find hidden", "Doesn't fit", "End sentence", "Long Press", "Multiple Tap Button", "Image Collide",  "Swipe Left", "Swipe Gesture", "Swipe Down", "Don't Press", "Blow in Mic"]//"Images", "Game Art", "Orientation Change", "Button Pattern", "Button Tap",  "Button Quick", "Pan Gesture", "KYC", "Core Motion", "Find hidden", "Doesn't fit", "End sentence", "Long Press", "Multiple Tap Button", "Image Collide",  "Swipe Left", "Swipe Gesture", "Swipe Down", "Don't Press", "Blow in Mic"  //out-commented levels: "Numbers", "Add 1", "Run a lap"
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var menuButton: ActionMenuButton!
     @IBOutlet weak var startBtn: UIButton!
-    var microphoneStatusString = String()
+    //var microphoneStatusString = String()
     var interstitialAd : GADInterstitial = GADInterstitial(adUnitID: "ca-app-pub-5276944768850449/4376612618")
     var popAdRandom = String()
     var defaults = UserDefaults.standard
@@ -121,7 +121,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
         view.insertSubview(pastelView, at: 0)
  
         //check microphone status
-        let microPhoneStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.audio)
+       /* let microPhoneStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.audio)
         switch microPhoneStatus {
             
         case .authorized:
@@ -157,7 +157,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
 
                 }}
         }
-        print(microphoneStatusString, "microphone status")
+        print(microphoneStatusString, "microphone status")*/
         print(mainTypeArray, "array")
         
         //Check if product is purchased
@@ -206,7 +206,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
         let leaderboard = MenuButton(withRadius: 35){ () -> (Void) in
             print("leaderboard/facebook")
             self.handleCustomFacebookLogin()
-            
+            self.refreshNotif()
         }
         leaderboard.setImage(UIImage(named: "leaderboard"), for: .normal)
         leaderboard.backgroundColor = UIColor().SwedenBlue()
@@ -255,7 +255,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 } else {
                         // rate in app store
                         EggRating.delegate = self
-                        EggRating.promptRateUs(viewController: self)
+                    EggRating.promptRateUs(in: self)
                     }
                 }
                 
@@ -296,7 +296,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
             } else {
                 // rate in app store
                 EggRating.delegate = self
-                EggRating.promptRateUs(viewController: self)
+                EggRating.promptRateUs(in: self)
             }
         }
 
@@ -307,7 +307,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
             if let destination = segue.destination as? GameVC {
                 
                 destination.mainTypeString = sendMainTypeString
-                destination.microphoneStatusString = microphoneStatusString
+                //destination.microphoneStatusString = microphoneStatusString
                 
             }
         }
@@ -344,12 +344,12 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
         notificationBanner.show()
         //end of show notificationBanner
         
-        do {
+       /* do {
             // This is to unduck others, make other playing sounds go back up in volume
             try AVAudioSession.sharedInstance().setActive(false)
         } catch {
             print("Failed to set AVAudioSession inactive. error=\(error)")
-        }
+        }*/
         
     }
     
@@ -388,7 +388,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -406,7 +406,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 
                 if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
                     guard let composer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
+                    composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱")
                     composer.add(URL(string: "sverigespelet.co"))
                     present(composer, animated: true, completion: nil)
                 } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -434,7 +434,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 break
             case .whatsapp:
                 //whatsApp
-                let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
+                let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱"
                 let urlStringEncoded = msg.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
                 let urlString  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
                 
@@ -458,7 +458,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                     mailcontroller.mailComposeDelegate = self;
                     mailcontroller.setToRecipients(["lucas@sverigespelet.co"])
                     mailcontroller.setSubject("Utmaning - försök att slå mig på Sverigespelet!")
-                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
+                    mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱</p></body></html>", isHTML: true)
                     
                     self.present(mailcontroller, animated: true, completion: nil)
                     
@@ -491,7 +491,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 if (MFMessageComposeViewController.canSendText()) {
                     let controller = MFMessageComposeViewController()
                     controller.messageComposeDelegate = self
-                    controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
+                    controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på  sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱"
                     
                     self.present(controller, animated: true, completion: nil)
                     
@@ -649,12 +649,14 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                 
                 if userTopScore != nil {
                     print(userTopScore!)
-                    LeaderboardVC.updateScore(score: userTopScore!, id:self.res.object(forKey: "id") as! String, completion: {
-                            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
-                            self.present(vc, animated: true, completion: nil)
-                            LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
-                        })
+                } else {
+                    userTopScore = 0
                 }
+                LeaderboardVC.updateScore(score: userTopScore!, id:self.res.object(forKey: "id") as! String, completion: {
+                    //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
+                    //self.present(vc, animated: true, completion: nil)
+                    LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
+                })
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
                 self.present(vc, animated: true, completion: nil)
                 
@@ -666,7 +668,6 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FacebookVC")
             self.present(vc, animated: true, completion: nil)
             
-            //TODO: OPEN VC WITH IMAGE AS OF INTROVC
             // Om jag inte är inloggad så kallar jag på loggin och gör samma procedur
             /*print("Facebook not logged in")
             FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) {
@@ -812,7 +813,7 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
                     } else {
                         // rate in app store
                         EggRating.delegate = self
-                        EggRating.promptRateUs(viewController: self)
+                        EggRating.promptRateUs(in: self)
                     }
                 }
                 //show notificationBanner
@@ -1069,6 +1070,57 @@ class StartMenuVC: UIViewController, GADBannerViewDelegate, GADInterstitialDeleg
     @objc func showFirstTimeVC() {
         present(pageViewController, animated: true, completion: nil)
     }
+    
+    //Random "intresseväckance" notifciation
+    func refreshNotif() {
+        
+        // code from http://stackoverflow.com/questions/6340664/delete-a-particular-local-notification
+        
+            //Schedule new one
+            var userDefinedMessages:[String] = [
+                
+                "How are you feeling today?",
+                "\"Motivation will almost always beat mere talent.\" Tap for extra motivation",
+                "\"People often say that motivation doesn’t last. Well, neither does bathing. That’s why we recommend it daily.\" ~ Zig Ziglar. Tap for today’s motivation",
+                "\"Without inspiration the best powers of the mind remain dormant. There is a fuel in us which needs to be ignited with sparks.\" Tap to get some sparks",
+                "\"The people who are crazy enough to think they can change the world are the ones who do.\" ~ Steve Jobs",
+                "\"You can do anything if you have enthusiasm.\" ~ Henry Ford. Tap for extra inspiration",
+                "\"Failure is simply the opportunity to begin again, this time more intelligently.\" ~ Henry Ford. Tap for new motivation",
+                "\"The mind is everything. What you think you become.\" ~ Buddha. Tap for positive thoughts",
+                "\"The real secret of success is enthusiasm.\" ~ Walter Chrysler. Tap for extra inspiration",
+                "\"To succeed, you need to find something to hold on to, something to motivate you, something to inspire you.\" Tap for inspiration",
+                "\"Be yourself; everyone else is already taken.\" ~ Oscar Wilde. Tap for more quotes",
+                "\"You become what you believe.\" ~ Oprah Winfrey. Tap for more inspiration",
+                "\"If you're afraid to fail, then you're probably going to fail.\" ~ Kobe Bryant. Tap for a pep-talk",
+                "\"The secret of getting ahead is getting started.\" ~ Mark Twain. Tap for instant motivation",
+                "\"Don’t count the days, make the days count.\" ~ Muhammad Ali. Tap for more inspiration",
+                "\"Life is like riding a bicycle. To keep your balance, you must keep moving.\" ~ Albert Einstein. Tap for more inspiration",
+                "\"Logic will get you from A to B. Imagination will take you everywhere.\" ~ Albert Einstein. Tap for inspiration",
+                "\"Believe you can and you’re halfway there.\" ~ Theodore Roosevelt. Tap for more inspiration",
+                "\"You are never too old to set another goal or to dream a new dream.\" ~ Eleanor Roosevelt. Tap for instant inspiration",
+                
+                ]
+            
+            
+            //Create date from current date so notifications start being scheduled from current time details here
+            let tDate = Date()
+            print(tDate)
+            let localNotif = UILocalNotification()
+            let Range: UInt32 = UInt32(userDefinedMessages.count)
+            let RandomNumber = Int(arc4random_uniform(Range))
+            let pickRandom = userDefinedMessages[RandomNumber]
+            localNotif.alertBody = String(pickRandom)
+            localNotif.alertAction = "Open App"
+            localNotif.repeatInterval = .second
+            localNotif.fireDate = Calendar.current.date(byAdding: .second, value: 3, to: tDate)!
+            //set the alert schedule date
+            
+            let startDate = Calendar.current.date(byAdding: .day, value: 6, to: tDate)!
+            print(startDate)
+            localNotif.soundName = UILocalNotificationDefaultSoundName
+            
+        
+    }//End of refreshNotif()
     
 }//end of class
 

@@ -89,7 +89,7 @@ class SettingsVC: QuickTableViewController, GADBannerViewDelegate, SwiftShareBub
                     print("rate us tapped")
                         // rate in app store
                         EggRating.delegate = self
-                        EggRating.promptRateUs(viewController: self)
+                    EggRating.promptRateUs(in: self)
                 
                 }),
                 TapActionRow(title: "Följ oss på sociala medier", action: { _ in
@@ -286,6 +286,8 @@ class SettingsVC: QuickTableViewController, GADBannerViewDelegate, SwiftShareBub
             Section(title: "", rows: []),
 
             Section(title: "Version 1.0\nCopyright © 2018 Lucas Otterling. All rights reserved.", rows: []),
+            Section(title: "", rows: []),
+            Section(title: "Please note company or event logos are protected by copyright and/or trademark registration. I believe the use of low-resolution logos and images in this 'just-for-entertainment' game for the use of identification in a positive and informational context may qualify as fair use under United States and European copyright law and may even be seen as free advertising. Any other uses of the logo images elsewhere may be copyrighted infringement. Furthermore, I refer after solution of the logo and images to the appropriate Wikipedia article which serves to explain the brand. If any actor who holds the rights to images/logos doesn't like the usage, please contact me immediately and I'll remove it.", rows: []),
         ]
     
     }//end of viewdidload

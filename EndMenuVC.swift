@@ -25,8 +25,8 @@ import MarqueeLabel
 var userTopScore:Int? = nil
 var facebookID = ""
 
-class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdDelegate, SwiftShareBubblesDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, FBSDKLoginButtonDelegate {
-
+class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdDelegate, SwiftShareBubblesDelegate, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, FBSDKLoginButtonDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+    
     @IBOutlet weak var scoreNumberLabel: UILabel!
     @IBOutlet weak var timeNumberLabel: UILabel!
     @IBOutlet weak var failsNumberLabel: UILabel!
@@ -43,7 +43,7 @@ class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdD
     var scoreNumber = Int() //FREDRIK -> detta är spelarens "score" som ska uppdateras till Leaderboarden... men hur? :/
     var timeNumber = Int()
     var failsNumber = Int()
-    var microphoneStatusString = String()
+    //var microphoneStatusString = String()
     var scoreTextString = String()
     var defaults = UserDefaults.standard 
     var formerMainTypeString = String()
@@ -64,6 +64,9 @@ class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdD
     var animationImages = [UIImage]()
     var completeTimer = Timer()
     var rewardUsed = String()
+//in-app purchase
+    var noAds_id: NSString?;
+    var nodAdsProduct = SKProduct()
 //notification banner
     var notificationBannerTitle = String()
     var notificationBannerSubtitle = String()
@@ -245,9 +248,9 @@ class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdD
    //removed levels: "Numbers", "Add 1", "Run a lap",
    var mainTypeArray = ["Images", "Game Art", "Orientation Change", "Button Pattern", "Button Tap",  "Button Quick", "Pan Gesture", "KYC", "Core Motion", "Find hidden", "Doesn't fit", "End sentence", "Long Press", "Multiple Tap Button", "Image Collide",  "Swipe Left", "Swipe Gesture", "Swipe Down", "Don't Press","Blow in Mic"]
    
-   if microphoneStatusString == "NO" {
+   /*if microphoneStatusString == "NO" {
        mainTypeArray.removeLast() //the positon of "blow in mic"
-   }
+   }*/
    print(mainTypeArray)
 
    //randomize interstial on return to startmenu or not
@@ -368,34 +371,34 @@ class EndMenuVC: UIViewController, GADBannerViewDelegate, GADRewardBasedVideoAdD
         alertController.addButton(icon: UIImage(named: "ad video"), title: "Se en reklamvideo (≈30 sec)") {
             print("reward video touched")
             
-if self.rewardBasedVideo?.isReady == true {
-   self.rewardBasedVideo?.present(fromRootViewController: self)
-} else {
-   let noController = UIAlertController(title: "Misslyckande", message: "Videon lyckades inte ladda klart. Kontrollera din internetanslutning och försök igen nästa gång.", preferredStyle: .alert)
-   noController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-   self.present(noController, animated: true, completion: nil)
+                if self.rewardBasedVideo?.isReady == true {
+                        self.rewardBasedVideo?.present(fromRootViewController: self)
+                } else {
+                        let noController = UIAlertController(title: "Misslyckande", message: "Videon lyckades inte ladda klart. Kontrollera din internetanslutning och försök igen nästa gång.", preferredStyle: .alert)
+                        noController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(noController, animated: true, completion: nil)
+                }
             }
-        }
-        
         // in app purchase
-        /*alertController.addButton(icon: UIImage(named: "money"), title: "Köp ett extra liv") {
+        alertController.addButton(icon: UIImage(named: "money"), title: "Köp ett extra liv") {
             print("in app purchase")
-         }*/ //TODO: ADD IN BETA VERSION
+            self.unlockAction()
+        }
         
         // rate in app store
         if (!defaults.bool(forKey: "Review Not Done")){
             print("User has not reviewed it")
             alertController.addButton(icon: UIImage(named: "app store"), title: "Betygsätt Sverigespelet") {
-   print("5-star review")
-       //ask for review
-   if #available(iOS 10.3, *) {
+                print("5-star review")
+                //ask for review
+                if #available(iOS 10.3, *) {
        // use the feature only available in iOS 10.3 and later
-       SKStoreReviewController.requestReview()
-   } else {
+                    SKStoreReviewController.requestReview()
+                    } else {
        // rate in app store
-       EggRating.delegate = self
-       EggRating.promptRateUs(viewController: self)
-   }
+                    EggRating.delegate = self
+                    EggRating.promptRateUs(in: self)
+                }
             }
         }
         
@@ -419,7 +422,7 @@ if self.rewardBasedVideo?.isReady == true {
    instaController.setValue(MessageattributedString, forKey: "attributedMessage")
    
    let action = UIAlertAction(title: "OK", style: .default, handler: { (_) in
-       let urlString = NSURL(string: "fb://profile/1155761444456364")!
+       let urlString = NSURL(string: "fb://profile/1950880881822451")!
     
        if UIApplication.shared.canOpenURL(urlString as URL){
         
@@ -631,7 +634,7 @@ if self.rewardBasedVideo?.isReady == true {
    
    if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
        guard let composer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) else { return }
-       composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
+       composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪 Ladda ner appen här bit.ly/Sverigespelet📱!")
        composer.add(URL(string: "sverigespelet.co"))
        present(composer, animated: true, completion: nil)
    } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -649,7 +652,7 @@ if self.rewardBasedVideo?.isReady == true {
    
    if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
        guard let composer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
-       composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!")
+       composer.setInitialText("Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪 Ladda ner appen här bit.ly/Sverigespelet📱!")
        composer.add(URL(string: "sverigespelet.co"))
        present(composer, animated: true, completion: nil)
    } else if UIApplication.shared.canOpenURL(urlString as URL){
@@ -677,7 +680,7 @@ if self.rewardBasedVideo?.isReady == true {
    break
             case .whatsapp:
    //whatsApp
-   let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
+   let msg = "Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱"
    let urlStringEncoded = msg.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
    let urlString  = NSURL(string: "whatsapp://send?text=\(urlStringEncoded!)")
    
@@ -700,7 +703,7 @@ if self.rewardBasedVideo?.isReady == true {
        let mailcontroller = MFMailComposeViewController()
        mailcontroller.mailComposeDelegate = self;
        mailcontroller.setSubject("Kolla vad jag fick på Sverigespelet!")
-       mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!</p></body></html>", isHTML: true)
+       mailcontroller.setMessageBody("<html><body><p>Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱</p></body></html>", isHTML: true)
     
        self.present(mailcontroller, animated: true, completion: nil)
     
@@ -733,7 +736,7 @@ if self.rewardBasedVideo?.isReady == true {
    if (MFMessageComposeViewController.canSendText()) {
        let controller = MFMessageComposeViewController()
        controller.messageComposeDelegate = self
-       controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på \(score!) sverigepoäng😉🇸🇪!"
+       controller.body = "Ladda ner Sverigespelet och försök slå mitt rekord på sverigepoäng😉🇸🇪! Ladda ner appen här bit.ly/Sverigespelet📱"
     
        self.present(controller, animated: true, completion: nil)
     
@@ -824,7 +827,7 @@ if self.rewardBasedVideo?.isReady == true {
     
     func grabEmailAddress() { //FREDRIK
             
-        //send to firebase"
+        //send to firebase
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else {return}
         let userCredentials = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
@@ -850,11 +853,7 @@ if self.rewardBasedVideo?.isReady == true {
             
             facebookID = res.object(forKey: "id") as! String
             
-            LeaderboardVC.updateScore(score: userTopScore! ,id:self.res.object(forKey: "id") as! String, completion: { 
-                
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
-                self.present(vc, animated: true, completion: nil)
-            })
+            LeaderboardVC.updateScore(score: userTopScore! ,id:self.res.object(forKey: "id") as! String, completion: {})
             LeaderboardVC.setName(name: self.res.object(forKey: "name") as! String, id:self.res.object(forKey: "id") as! String)
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "leaderBoardId")
@@ -906,7 +905,7 @@ if self.rewardBasedVideo?.isReady == true {
        } else {
            // rate in app store
            EggRating.delegate = self
-           EggRating.promptRateUs(viewController: self)
+        EggRating.promptRateUs(in: self)
        }
    }
    //show notificationBanner
@@ -1213,6 +1212,88 @@ if self.rewardBasedVideo?.isReady == true {
         alertController.title = "\"Vad ska jag göra!?\""
         alertController.show()
     }//end of infoButtonTapped
+    
+    func unlockAction() {
+        self.noAds_id = "com.LucasOtterling.fiveSecondsGameFinal.ExtraLife";
+        // Adding the observer
+        SKPaymentQueue.default().add(self)
+        
+        print("About to fetch the products");
+        
+        // Check if user can make payments and then proceed to make the purchase.
+        if (SKPaymentQueue.canMakePayments())
+        {
+            let productID:NSSet = NSSet(object: self.noAds_id!);
+            let productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>);
+            productsRequest.delegate = self;
+            productsRequest.start();
+            print("User can make purchases and will fetch products from Apple Store now");
+        }else{
+            print("User can't make purchases");
+        }
+        
+    }
+    
+    func buyProduct(product: SKProduct){
+        print("Sending the Payment Request to Apple");
+        let payment = SKPayment(product: product)
+        SKPaymentQueue.default().add(payment);
+        
+    }
+    
+    func productsRequest (_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        
+        let count : Int = response.products.count
+        if (count>0) {
+            
+            let nodAdsProduct = response.products[0] as SKProduct
+            if (nodAdsProduct.productIdentifier as NSString == self.noAds_id ) {
+                print(nodAdsProduct.localizedTitle)
+                print(nodAdsProduct.localizedDescription)
+                print(nodAdsProduct.price)
+                buyProduct(product: nodAdsProduct);
+            } else {
+                print(nodAdsProduct.productIdentifier)
+            }
+        } else {
+            print("nothing to find")
+        }
+    }
+    
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Error Fetching product information", error);
+    }
+    
+    // Allowing for all possible outcomes:
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction])   {
+        print("Received Payment Transaction Response from Apple adfree");
+        
+        for transaction:AnyObject in transactions {
+            if let trans:SKPaymentTransaction = transaction as? SKPaymentTransaction {
+                switch trans.transactionState {
+                case .purchased:
+                    print("Product Purchase Success")
+                    self.performSegue(withIdentifier: "backToGame", sender: self)
+                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    break;
+                    
+                case .failed:
+                    print("Purchase Failed");
+                    let alert = UIAlertController(title: "Köpet misslyckades", message: "Har du internet? Försök igen eller använd en annan metod för att få ett extra liv.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Försök igen!", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                        print("hello")
+                    }))
+                    alert.addAction(UIAlertAction(title: "Avbryt", style: UIAlertActionStyle.cancel, handler: nil))
+                    present(alert, animated: true, completion: nil)
+                    SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }//end of unlockAction
 
 }//end of class
 

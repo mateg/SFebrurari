@@ -56,6 +56,16 @@ class IntroViewController: UIViewController, FBSDKLoginButtonDelegate {
         if self.imageView.image == UIImage(named: "pageImage0"){
             //First image
             controlBtn.isHidden = true
+        } else if self.imageView.image == UIImage(named: "pageImage0"){
+           /* //third image
+            let label = UILabel()
+            label.text = Ditt högsta rekord kommer att laddas upp till vår topplista.
+            label.frame.size.width = controlBtn.frame.size.width
+            label.frame.size.height = 15
+            label.center.x = controlBtn.frame.minX
+            label.center.y = controlBtn.frame.minY - controlBtn.frame.size.height/2
+            //animateImageView.backgroundColor = .cyan
+            view.addSubview(label)*/
         }
     }
     
@@ -270,6 +280,21 @@ class IntroViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func handleCustomFacebookLogin() {
+            print("Facebook not logged in")
+            FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) {
+                (result, error) in
+                if error != nil {
+                    print("Custom Facebook Login failed")
+                    return
+                }
+                self.grabEmailAddress()
+        }
+            
+            //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FacebookVC")
+            //self.present(vc, animated: true, completion: nil)
+        
+    }
+    /* OLD WAY OF LOGIN INTO FB
         if(FBSDKAccessToken.current() != nil){
             print("Facebook logged in")
             let alert = UIAlertController(title: "Logga ut från Facebook?", message: "Detta försämrar din spelupplevelse och kontakt med Sverigespelets sociala media community.", preferredStyle: UIAlertControllerStyle.alert)
@@ -286,10 +311,9 @@ class IntroViewController: UIViewController, FBSDKLoginButtonDelegate {
                 self.grabEmailAddress()
             }
         }
-    }
+    }*/
     
     func grabEmailAddress() {
-        
         //send to firebase
         let accessToken = FBSDKAccessToken.current()
         guard let accessTokenString = accessToken?.tokenString else {return}
@@ -300,8 +324,8 @@ class IntroViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print("something went wrong with the Facebook User", error ?? "")
                 return
             }
-            print("Successfully logged in with Facebook user in Firebase", user ?? "")
             
+            print("Successfully logged in with Facebook user in Firebase", user ?? "")
         }
         
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start {(connection, result, error) in
@@ -310,9 +334,22 @@ class IntroViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print("Failed to start facebook graph request", error as Any)
                 return
             }
+            
+            let res = result as! NSDictionary
+            
+            facebookID = res.object(forKey: "id") as! String
+            
+            if userTopScore != nil {
+                print("userTopScore",userTopScore!)
+            } else {
+                userTopScore = 0
+                print("userTopScore",userTopScore!)
+            }
+            LeaderboardVC.updateScore(score: userTopScore! ,id: res.object(forKey: "id") as! String, completion: {})
+            LeaderboardVC.setName(name: res.object(forKey: "name") as! String, id: res.object(forKey: "id") as! String)
+            
             print(result!) //print out the different crediters of the user
         }
-        
     }//END OF FACEBOOK LOGIN
     
 }
